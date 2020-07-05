@@ -1,0 +1,92 @@
+{% macro salesPriceRow(salesprice, index, channel) %}
+    <tr class="item">
+        <td>
+            {{ form_widget(salesprice.channel) }}
+            <div class="field">
+                {{ form_widget(salesprice.priceGroup, {'attr': {'class': 'ui dropdown'}}) }}
+                {{ form_errors(salesprice.priceGroup) }}
+            </div>
+        </td>
+        <td>
+            <div class="field">
+                {{ form_widget(salesprice.qty, {'attr' : {'class': 'SALESPRICE_SORTING_CHANGED'}}) }}
+                {{ form_errors(salesprice.qty) }}
+            </div>
+        </td>
+        <td>
+            {{ form_widget(salesprice.channel) }}
+            <div class="field priceField">
+                {{ form_widget(salesprice.price, {currency: channel.baseCurrency|default('USD')}) }}
+                {{ form_errors(salesprice.price) }}
+            </div>
+        </td>
+        <td>
+            {{ form_widget(salesprice.channel) }}
+            <div class="field">
+                {{ form_widget(salesprice.startingDate) }}
+                {{ form_errors(salesprice.startingDate) }}
+            </div>
+        </td>
+        <td>
+            {{ form_widget(salesprice.channel) }}
+            <div class="field">
+                {{ form_widget(salesprice.endingDate) }}
+                {{ form_errors(salesprice.endingDate) }}
+            </div>
+        </td>
+        <td>
+            <a class="ui red labeled icon button" onclick="salesPricesTableRemove(this);">
+                <i class="trash icon"></i>{{ 'sylius.ui.delete'|trans }}
+            </a>
+        </td>
+    </tr>
+{% endmacro %}
+
+{% block content %}
+    {% import _self as row %}
+    <div class="ui tab" data-tab="salesprice">
+        {% if form.salesPrices is defined %}
+            {% set variantForm = form %}
+        {% else %}
+            {% set variantForm = form.variant %}
+        {% endif %}
+        <script>
+            var salesPriceIndex = {{ variantForm.salesPrices|length }};
+        </script>
+
+        {{ form_errors(variantForm) }}
+
+        <span data-prototype="{{ row.salesPriceRow(variantForm.salesPrices.vars.prototype, '__name__')|e('html_attr') }}" id="prototype_text_holder"></span>
+
+        {% for channel in variantForm.vars.data.product.channels %}
+            <h3 class="ui dividing header"> {{ channel.name }}</h3>
+
+            {% set bodyId = "salesPricesTable_" ~ channel.id %}
+
+            <table class="ui stackable celled table" id="{{ bodyId }}_table" data-prototype="{{ channel.baseCurrency|sylius_currency_symbol }}">
+                <thead>
+                <tr>
+                    <th class="table-column-quantity">{{ 'sylius.ui.quantity'|trans }}</th>
+                    <th>{{ 'sylius.ui.unit_price'|trans }} </th>
+                    <th>{{ 'tavy315_sylius_sales_prices.ui.price_group'|trans }} </th>
+                    <th>{{ 'tavy315_sylius_sales_prices.ui.starting_date'|trans }} </th>
+                    <th>{{ 'tavy315_sylius_sales_prices.ui.ending_date'|trans }} </th>
+                    <th>{{ 'sylius.ui.delete'|trans }}</th>
+                </tr>
+                </thead>
+                <tbody id="{{ bodyId }}">
+                {% for i, salesprice in variantForm.salesPrices %}
+                    {% if salesprice.channel.vars['value'] == channel.code %}
+                        {{ row.salesPriceRow(salesprice, i, channel) }}
+                    {% endif %}
+                {% endfor %}
+                </tbody>
+            </table>
+            <div class="ui labeled icon primary button" onclick="salesPricesTableAdd('{{ bodyId }}', '{{ channel.code }}')">
+                <i class="add icon"></i> {{ 'sylius.ui.add'|trans }}
+            </div>
+        {% endfor %}
+
+        {{ sonata_block_render_event('sylius.admin.product_variant.' ~ action ~ '.tab_salesprice', {'form': form }) }}
+    </div>
+{% endblock %}

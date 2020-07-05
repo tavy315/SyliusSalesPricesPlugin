@@ -1,0 +1,13 @@
+sylius_product:
+    resources:
+        product_variant:
+            classes:
+                model: Tavy315\SyliusSalesPricesPlugin\Entity\ProductVariant
+
+sylius_resource:
+    resources:
+        tavy315.salesprice:
+            classes:
+                model: Tavy315\SyliusSalesPricesPlugin\Entity\SalesPrice
+                form: Tavy315\SyliusSalesPricesPlugin\Form\SalesPriceType
+                repository: Tavy315\SyliusSalesPricesPlugin\Repository\SalesPriceRepository

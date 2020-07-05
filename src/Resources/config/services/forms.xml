@@ -1,0 +1,14 @@
+<container xmlns="http://symfony.com/schema/dic/services">
+    <services>
+        <service class="Tavy315\SyliusSalesPricesPlugin\Form\SalesPriceType"
+                 id="tavy315_sales_prices.form.sales_price_type">
+            <tag name="form.type" />
+            <argument type="service" id="sylius.repository.channel" />
+        </service>
+
+        <service class="Tavy315\SyliusSalesPricesPlugin\Form\Extension\ProductVariantTypeExtension"
+                 id="tavy315_sales_prices.form.extension.product_variant_type">
+            <tag name="form.type_extension" extended_type="Sylius\Bundle\ProductBundle\Form\Type\ProductVariantType" priority="-5" />
+        </service>
+    </services>
+</container>

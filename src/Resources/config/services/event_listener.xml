@@ -1,0 +1,17 @@
+<container xmlns="http://symfony.com/schema/dic/services">
+    <services>
+        <service class="Tavy315\SyliusSalesPricesPlugin\Menu\AdminProductVariantFormMenuListener"
+                 id="tavy315_sylius_sales_prices.listener.admin.product_variant.form.menu_builder"
+        >
+            <tag name="kernel.event_listener" event="sylius.menu.admin.product_variant.form" method="addItems" />
+            <argument type="service" id="sylius.theme.translation.theme_aware_translator.inner" />
+        </service>
+
+        <service class="Tavy315\SyliusSalesPricesPlugin\Menu\AdminProductFormMenuListener"
+                 id="tavy315_sylius_sales_prices.listener.admin.product.form.menu_builder"
+        >
+            <tag name="kernel.event_listener" event="sylius.menu.admin.product.form" method="addItems" />
+            <argument type="service" id="sylius.theme.translation.theme_aware_translator.inner" />
+        </service>
+    </services>
+</container>

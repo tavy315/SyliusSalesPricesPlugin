@@ -1,0 +1,4 @@
+tavy315_sales_prices:
+    form:
+        validation:
+            not_unique: Sales price for this quantity already exists.

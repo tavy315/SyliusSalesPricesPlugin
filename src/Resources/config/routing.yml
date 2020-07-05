@@ -1,0 +1,5 @@
+tavy315_sylius_sales_price:
+    prefix: /api/product-variants/
+    resource: |
+        alias: tavy315.salesprice
+    type: sylius.resource_api

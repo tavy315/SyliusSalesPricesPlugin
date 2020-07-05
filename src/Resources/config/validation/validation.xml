@@ -1,0 +1,43 @@
+<constraint-mapping xmlns="http://symfony.com/schema/dic/constraint-mapping">
+    <class name="Tavy315\SyliusSalesPricesPlugin\Entity\SalesPrice">
+        <property name="qty">
+            <constraint name="NotBlank">
+                <option name="groups">sylius</option>
+            </constraint>
+            <constraint name="Type">
+                <option name="type">integer</option>
+                <option name="groups">sylius</option>
+            </constraint>
+            <constraint name="Range">
+                <option name="min">0</option>
+                <option name="minMessage">quantity.positive</option>
+                <option name="groups">sylius</option>
+            </constraint>
+        </property>
+        <property name="price">
+            <constraint name="GreaterThanOrEqual">
+                <option name="value">0</option>
+            </constraint>
+        </property>
+        <property name="priceGroup">
+            <constraint name="NotBlank">
+                <option name="groups">sylius</option>
+            </constraint>
+        </property>
+        <constraint name="Tavy315\SyliusSalesPricesPlugin\Validator\SalesPriceUniqueValidator">
+            <option name="fields">
+                <value>qty</value>
+                <value>channel</value>
+                <value>productVariant</value>
+                <value>priceGroup</value>
+            </option>
+            <option name="groups">sylius</option>
+        </constraint>
+    </class>
+
+    <class name="Tavy315\SyliusSalesPricesPlugin\Entity\ProductVariant">
+        <property name="salesPrices">
+            <constraint name="Valid"/>
+        </property>
+    </class>
+</constraint-mapping>

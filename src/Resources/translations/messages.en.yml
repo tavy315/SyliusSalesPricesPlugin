@@ -1,0 +1,6 @@
+tavy315_sylius_sales_prices:
+    ui:
+        ending_date: Ending date
+        price_group: Price group
+        sales_prices: Sales prices
+        starting_date: Starting date

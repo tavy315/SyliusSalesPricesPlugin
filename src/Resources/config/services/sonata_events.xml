@@ -1,0 +1,15 @@
+<container xmlns="http://symfony.com/schema/dic/services">
+    <services>
+        <service class="Sylius\Bundle\UiBundle\Block\BlockEventListener"
+                 id="tavy315_sales_prices.block_event_listener.admin.layout.javascripts">
+            <tag name="kernel.event_listener" event="sonata.block.event.sylius.admin.layout.javascripts" method="onBlockEvent" />
+            <argument>@Tavy315SyliusSalesPricesPlugin/Admin/_javascripts.html.twig</argument>
+        </service>
+
+        <service class="Sylius\Bundle\UiBundle\Block\BlockEventListener"
+                 id="tavy315_sales_prices.block_event_listener.shop.layout.javascripts.salesprice">
+            <tag name="kernel.event_listener" event="sonata.block.event.sylius.shop.layout.javascripts" method="onBlockEvent" />
+            <argument>@Tavy315SyliusSalesPricesPlugin/Shop/_javascripts.html.twig</argument>
+        </service>
+    </services>
+</container>

@@ -1,0 +1,9 @@
+<container xmlns="http://symfony.com/schema/dic/services">
+    <services>
+        <service class="Tavy315\SyliusSalesPricesPlugin\Validator\SalesPriceUniqueValidator"
+                 id="tavy315.sylius_sales_prices_plugin.validator.sales_price_unique_validator">
+            <argument type="service" id="doctrine" />
+            <tag name="validator.constraint_validator" alias="tavy315.sales_price_validator.unique" />
+        </service>
+    </services>
+</container>

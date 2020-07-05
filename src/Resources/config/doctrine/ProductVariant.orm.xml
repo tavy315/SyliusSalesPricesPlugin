@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping"
+                  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                  xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd"
+>
+
+    <mapped-superclass name="Tavy315\SyliusSalesPricesPlugin\Entity\ProductVariant" table="sylius_product_variant">
+        <one-to-many target-entity="Tavy315\SyliusSalesPricesPlugin\Entity\SalesPrice" mapped-by="productVariant" field="salesPrices" orphan-removal="true">
+            <cascade>
+                <cascade-all />
+            </cascade>
+            <order-by>
+                <order-by-field name="priceGroup" direction="ASC"/>
+                <order-by-field name="qty" direction="ASC"/>
+            </order-by>
+        </one-to-many>
+    </mapped-superclass>
+</doctrine-mapping>
