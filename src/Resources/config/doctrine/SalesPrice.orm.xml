@@ -11,8 +11,8 @@
         <field name="price" type="integer" column="price" />
         <field name="qty" type="integer" column="qty" />
         <field name="priceGroup" type="string" column="price_group" length="30" />
-        <field name="startingDate" type="datetime" column="starting_date" nullable="true" />
-        <field name="endingDate" type="datetime" column="ending_date" nullable="true" />
+        <field name="startingDate" type="date" column="starting_date" nullable="true" />
+        <field name="endingDate" type="date" column="ending_date" nullable="true" />
         <many-to-one target-entity="Sylius\Component\Channel\Model\ChannelInterface" field="channel">
             <join-column name="channel_id" />
         </many-to-one>
