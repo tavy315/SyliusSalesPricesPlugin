@@ -112,7 +112,7 @@ trait SalesPriceableTrait
                 return false;
             }
 
-            if ($salesPrice->getEndingDate() !== null && $salesPrice->getEndingDate() < new \DateTime()) {
+            if ($salesPrice->getEndingDate() !== null && $salesPrice->getEndingDate()->setTime(23, 59, 59) < new \DateTime()) {
                 return false;
             }
 
