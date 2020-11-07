@@ -16,7 +16,7 @@ trait SalesPriceableTrait
         $this->salesPrices = new ArrayCollection();
     }
 
-    /** @var SalesPriceInterface[]|ArrayCollection */
+    /** @var ArrayCollection<SalesPriceInterface> */
     protected $salesPrices;
 
     /**
@@ -40,7 +40,7 @@ trait SalesPriceableTrait
      */
     public function getSalesPricesForChannel(ChannelInterface $channel, string $priceGroup): array
     {
-        $channelSalesPrices = \array_filter($this->getSalesPrices(), static function (SalesPriceInterface $salesPrice) use ($channel) {
+        $channelSalesPrices = \array_filter($this->getSalesPrices(), static function (SalesPriceInterface $salesPrice) use ($channel): bool {
             $salesPriceChannel = $salesPrice->getChannel();
 
             return $salesPriceChannel !== null && $salesPriceChannel->getId() === $channel->getId();
@@ -56,7 +56,7 @@ trait SalesPriceableTrait
      */
     public function getSalesPricesForChannelCode(string $code, string $priceGroup): array
     {
-        $channelSalesPrices = \array_filter($this->getSalesPrices(), static function (SalesPriceInterface $salesPrice) use ($code) {
+        $channelSalesPrices = \array_filter($this->getSalesPrices(), static function (SalesPriceInterface $salesPrice) use ($code): bool {
             $salesPriceChannel = $salesPrice->getChannel();
 
             return $salesPriceChannel !== null && $salesPriceChannel->getCode() === $code;
@@ -85,6 +85,8 @@ trait SalesPriceableTrait
 
     /**
      * Sets the sales prices form the array collection
+     *
+     * @param array<SalesPriceInterface> $salesPrices
      */
     public function setSalesPrices(array $salesPrices): void
     {
@@ -95,7 +97,6 @@ trait SalesPriceableTrait
         $this->salesPrices = new ArrayCollection();
 
         foreach ($salesPrices as $salesPrice) {
-            /** @var SalesPriceInterface $salesPrice */
             $this->addSalesPrice($salesPrice);
         }
     }
@@ -107,7 +108,7 @@ trait SalesPriceableTrait
      */
     private function filterPricesWithPriceGroup(array $salesPrices, string $priceGroup): array
     {
-        return \array_filter($salesPrices, static function (SalesPriceInterface $salesPrice) use ($priceGroup) {
+        return \array_filter($salesPrices, static function (SalesPriceInterface $salesPrice) use ($priceGroup): bool {
             if ($salesPrice->getStartingDate() !== null && $salesPrice->getStartingDate() > new \DateTime()) {
                 return false;
             }

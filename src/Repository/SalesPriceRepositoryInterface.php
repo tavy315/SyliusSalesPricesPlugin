@@ -4,12 +4,12 @@ declare(strict_types=1);
 
 namespace Tavy315\SyliusSalesPricesPlugin\Repository;
 
-use Doctrine\Common\Persistence\ObjectRepository;
 use Sylius\Component\Core\Model\ChannelInterface;
+use Sylius\Component\Resource\Repository\RepositoryInterface;
 use Tavy315\SyliusSalesPricesPlugin\Entity\SalesPriceInterface;
 use Tavy315\SyliusSalesPricesPlugin\Traits\SalesPriceableInterface;
 
-interface SalesPriceRepositoryInterface extends ObjectRepository
+interface SalesPriceRepositoryInterface extends RepositoryInterface
 {
     /**
      * Gets all sales prices for a product variant for a channel and optionally customer group with quantity in ascending order

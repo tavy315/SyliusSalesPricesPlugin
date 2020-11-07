@@ -11,7 +11,7 @@ class SalesPriceUniqueConstraint extends Constraint
     /** @var string */
     public $message = 'tavy315_sales_prices.form.validation.not_unique';
 
-    /** @var array */
+    /** @var string[] */
     public $fields = [];
 
     public function getDefaultOption(): ?string

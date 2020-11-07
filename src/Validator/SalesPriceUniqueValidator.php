@@ -59,7 +59,7 @@ class SalesPriceUniqueValidator extends ConstraintValidator
         }
         $otherSalesPrices = $formData->getSalesPrices();
 
-        $otherSalesPrices = array_filter($otherSalesPrices, static function ($salesPrice) use ($value) {
+        $otherSalesPrices = array_filter($otherSalesPrices, static function ($salesPrice) use ($value): bool {
             return $salesPrice !== $value;
         });
 
