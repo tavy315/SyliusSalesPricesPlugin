@@ -24,7 +24,7 @@
                 <option name="groups">sylius</option>
             </constraint>
         </property>
-        <constraint name="Tavy315\SyliusSalesPricesPlugin\Validator\SalesPriceUniqueValidator">
+        <constraint name="Tavy315\SyliusSalesPricesPlugin\Validator\SalesPriceUniqueConstraint">
             <option name="fields">
                 <value>qty</value>
                 <value>channel</value>
