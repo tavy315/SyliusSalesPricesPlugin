@@ -19,5 +19,8 @@
         <many-to-one target-entity="Sylius\Component\Product\Model\ProductVariantInterface" field="productVariant" inversed-by="salesPrices">
             <join-column name="product_variant_id" />
         </many-to-one>
+        <indexes>
+            <index columns="channel_id,price_group"></index>
+        </indexes>
     </mapped-superclass>
 </doctrine-mapping>
