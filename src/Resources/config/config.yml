@@ -1,3 +1,14 @@
 imports:
-  - { resource: "services.xml" }
-  - { resource: "resources.yml" }
+    - { resource: "services.xml" }
+    - { resource: "resources.yml" }
+
+sylius_ui:
+    events:
+        sylius.admin.product_variant.update.javascripts:
+            blocks:
+                tavy315_sylius_sales_prices_product_variant:
+                    template: '@Tavy315SyliusSalesPricesPlugin/Admin/_javascripts.html.twig'
+        sylius.admin.product.update.javascripts:
+            blocks:
+                tavy315_sylius_sales_prices_product_variant:
+                    template: '@Tavy315SyliusSalesPricesPlugin/Admin/_javascripts.html.twig'

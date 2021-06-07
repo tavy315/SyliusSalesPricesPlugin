@@ -21,14 +21,12 @@
             </div>
         </td>
         <td>
-            {{ form_widget(salesprice.channel) }}
             <div class="field">
                 {{ form_widget(salesprice.startingDate) }}
                 {{ form_errors(salesprice.startingDate) }}
             </div>
         </td>
         <td>
-            {{ form_widget(salesprice.channel) }}
             <div class="field">
                 {{ form_widget(salesprice.endingDate) }}
                 {{ form_errors(salesprice.endingDate) }}
@@ -88,5 +86,10 @@
         {% endfor %}
 
         {{ sonata_block_render_event('sylius.admin.product_variant.' ~ action ~ '.tab_salesprice', {'form': form }) }}
+
+        {{ sylius_template_event([
+            'sylius.admin.product_variant.' ~ action ~ '.tab_salesprice',
+            'sylius.admin.product_variant.tab_salesprice'
+        ], {'form': form }) }}
     </div>
 {% endblock %}

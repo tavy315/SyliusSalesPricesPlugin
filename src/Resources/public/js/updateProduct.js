@@ -19,7 +19,7 @@ function getPricesFromSalesPricesTable(element, quantity) {
     $(element).find('tr').each(function (i, row) {
         var currentAmount = Number($(row.children[0]).text());
         if (quantity >= currentAmount) {
-            cheapestPrice = $(row.children[1]).text()
+            cheapestPrice = $(row.children[1]).text();
         }
     });
 
@@ -35,5 +35,10 @@ function getDefaultPriceForProductVariant(productVariantName) {
 
 $('#sylius_add_to_cart_cartItem_quantity').on('change', function (event) {
     var quantity = Number(event.target.value);
+    recalculatePrices(quantity);
+});
+
+$(document).ready(function () {
+    var quantity = Number($('#sylius_add_to_cart_cartItem_quantity').val());
     recalculatePrices(quantity);
 });
