@@ -10,5 +10,5 @@ sylius_ui:
                     template: '@Tavy315SyliusSalesPricesPlugin/Admin/_javascripts.html.twig'
         sylius.admin.product.update.javascripts:
             blocks:
-                tavy315_sylius_sales_prices_product_variant:
+                tavy315_sylius_sales_prices_product:
                     template: '@Tavy315SyliusSalesPricesPlugin/Admin/_javascripts.html.twig'
