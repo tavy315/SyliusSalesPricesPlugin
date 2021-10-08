@@ -8,7 +8,7 @@
     ],
     "license": "MIT",
     "require": {
-        "php": "^7.3",
+        "php": "^7.4",
         "sylius/sylius": "^1.8"
     },
     "require-dev": {
@@ -18,10 +18,7 @@
         "phpstan/phpstan-symfony": "^0.12",
         "phpstan/phpstan-webmozart-assert": "^0.12",
         "sensiolabs/security-checker": "^5.0",
-        "sylius-labs/coding-standard": "^3.2",
-        "symfony/debug-bundle": "^4.4",
-        "symfony/dotenv": "^4.4",
-        "symfony/intl": "^4.4"
+        "sylius-labs/coding-standard": "^3.2"
     },
     "autoload": {
         "psr-4": {
